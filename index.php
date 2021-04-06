@@ -16,7 +16,7 @@
     $pdf_width = "100%";
 
     if ($handle = opendir($dir)) {
-        $blacklist = array('.', '..', 'incoming', '.DS_Store', '.placeholder');
+        $blacklist = array('.', '..', 'incoming', '.DS_Store', '.placeholder', '.AppleDB');
         $ziele = array();
         while (false !== ($file = readdir($handle))) {
             if (!in_array($file, $blacklist)) {
