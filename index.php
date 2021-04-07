@@ -23,6 +23,7 @@
                 array_push($ziele, $file);
             }
         }
+        sort($ziele);
         closedir($handle);
     }
 
