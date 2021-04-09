@@ -1,5 +1,4 @@
 <?
-
 $oldname = $_GET["oldname"];
 $newname = $_GET["newname"];
 $indir = $_GET["indir"];
@@ -7,7 +6,7 @@ $renamed_dir = $_GET["renamed_dir"];
 $host  = $_SERVER['HTTP_HOST'];
 
 if (empty($newname)) {
-    $newname = mt_rand();
+    $newname = strstr($oldname, '.', true);
 }
 
 $src_file = $indir.$oldname;

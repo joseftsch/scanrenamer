@@ -86,6 +86,9 @@ Datum_Firma_Kürzel_Details
 
         </form>
     </div>
+    <?php
+        echo "Derzeitiger Name: ".substr(strrchr($indir.$arr[0], "/"), 1);
+    ?>
     <br />
     <div><embed src=" <?php echo $indir.$arr[0] ?>" height="<?php echo $pdf_height ?>" width="<?php echo $pdf_width ?>"></div>
 <?php } ?>
