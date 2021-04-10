@@ -56,7 +56,7 @@
             <div class="row">
                 <div class="col">
                     <div class="form-floating mb-3">
-                        <input type="text" name="newname" id="newname" class="form-control" id="floatingInput" pattern="[a-zA-Z0-9-_]+">
+                        <input type="text" name="newname" id="newname" class="form-control" id="floatingInput" pattern="[a-zA-Z0-9-_]+" autofocus>
                         <label for="floatingInput">Neuer Name (a-zA-Z0-9-_)</label>
                     </div>
                 </div>
