@@ -9,7 +9,7 @@
 <?php
     $indir = "./scans/incoming/";
     $dir = "./scans/";
-    $regex = "/(.*).pdf/";
+    $regex = "/(.*).pdf/i";
     $jpg_quality = 100;
     $arr = array();
     $pdf_height = "800";
