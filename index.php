@@ -12,10 +12,11 @@
     $regex = "/(.*).pdf/i";
     $jpg_quality = 100;
     $arr = array();
+    $ziele = array();
     $pdf_height = "800";
     $pdf_width = "100%";
     $blacklist = array('.', '..', 'incoming', '.DS_Store', '.placeholder', '.AppleDB');
-    $blacklist2 = array('.', '..', 'incoming', '.DS_Store', '.placeholder', '.AppleDB', './scans','./scans/incoming');
+    $blacklist2 = array('.', '..', 'incoming', '.DS_Store', '.placeholder', '.AppleDB', './scans/.AppleDB', './scans','./scans/incoming');
 
     $iter = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($dir));
     foreach($iter as $file) {
@@ -88,7 +89,8 @@ Datum_Firma_Kürzel_Details
         </form>
     </div>
     <?php
-        echo "Derzeitiger Name: ".substr(strrchr($indir.$arr[0], "/"), 1);
+        echo "Derzeitiger Name: ".substr(strrchr($indir.$arr[0], "/"), 1)." <br> ";
+        echo "Anzahl der noch zu bearbeitenden PDFs: ".count($arr);
     ?>
     <br />
     <div><embed src=" <?php echo $indir.$arr[0] ?>" height="<?php echo $pdf_height ?>" width="<?php echo $pdf_width ?>"></div>
