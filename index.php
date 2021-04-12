@@ -14,18 +14,18 @@
     $arr = array();
     $pdf_height = "800";
     $pdf_width = "100%";
+    $blacklist = array('.', '..', 'incoming', '.DS_Store', '.placeholder', '.AppleDB');
+    $blacklist2 = array('.', '..', 'incoming', '.DS_Store', '.placeholder', '.AppleDB', './scans','./scans/incoming');
 
-    if ($handle = opendir($dir)) {
-        $blacklist = array('.', '..', 'incoming', '.DS_Store', '.placeholder', '.AppleDB');
-        $ziele = array();
-        while (false !== ($file = readdir($handle))) {
-            if (!in_array($file, $blacklist)) {
-                array_push($ziele, $file);
+    $iter = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($dir));
+    foreach($iter as $file) {
+        if ($file->getFilename() == '.') {
+            if (!in_array($file->getPath(), $blacklist2)) {
+                $ziele[] = $file->getPath();
             }
         }
-        sort($ziele);
-        closedir($handle);
     }
+    sort($ziele);
 
     // open contract directory and put all files into $arr
     if ( is_dir($indir) )
@@ -56,14 +56,15 @@
             <div class="row">
                 <div class="col">
                     <div class="form-floating mb-3">
-                        <input type="text" name="newname" id="newname" class="form-control" id="floatingInput" pattern="[a-zA-Z0-9-_]+" autofocus>
+                        <input type="text" name="newname" id="newname" class="form-control" id="floatingInput" pattern="[a-zA-Z0-9-_]+" tabindex=1 autofocus>
                         <label for="floatingInput">Neuer Name (a-zA-Z0-9-_)</label>
                     </div>
                 </div>
                 <div class="col">
                     Zielordner:
-                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="renamed_dir" id="renamed_dir">
+                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="renamed_dir" id="renamed_dir" tabindex=2>
                     <?php foreach ($ziele as $ziel) {
+                        $ziel = substr($ziel, strlen($dir));
                         print "<option value=".$dir."/".$ziel.">$ziel</option>";
                     } ?>
                     </select>
@@ -71,7 +72,7 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <button type="submit" class="btn btn-primary">Umbenennen</button>
+                    <button type="submit" class="btn btn-primary" tabindex=3>Umbenennen</button>
                 </div>
                 <div class="col">
                 <div class="mb-3">
